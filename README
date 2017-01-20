@@ -1,0 +1,19 @@
+This is a super minimalistic GCC plugin that makes avr-g++ put tables of
+vitual functions into the program memory saving RAM. It is meant to be
+built as a plugin for the existing avr-g++ and modify its default behavior
+when loaded.
+
+Building.
+
+To build this plugin you need avr-g++ with plugins directory installed
+and the host gcc. Just run make in the current directory.
+
+Using.
+
+Invoke avr-g++ with additional parameter
+
+  -fplugin=<full-path-to>/avr-flash-vtbl.so
+
+More info.
+
+https://habrahabr.ru/company/amperka/blog/264041
