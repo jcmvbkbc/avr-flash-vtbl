@@ -17,3 +17,9 @@ Invoke avr-g++ with additional parameter
 More info.
 
 https://habrahabr.ru/company/amperka/blog/264041
+
+More technical info.
+
+This plugin merely adds __flash attribute to the C++ vtable and vtable
+pointer types. The rest is taken care of by the existing address space
+machinery of the gcc and flash address space support of the AVR backend.
