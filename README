@@ -1,16 +1,33 @@
 This is a super minimalistic GCC plugin that makes avr-g++ put tables of
 vitual functions into the program memory saving RAM. It is meant to be
 built as a plugin for the existing avr-g++ and modify its default behavior
-when loaded.
+when loaded. It is loaded into the compiler during compilation step. It
+has no effect at linking step. Libraries that define classes which vtables
+are intended to be placed into flash must be compiled with this plugin.
 
 Building.
 
 To build this plugin you need avr-g++ with plugins directory installed
-and the host gcc. Just run make in the current directory.
+and the host gcc. You may also need to install additional headers not
+provided by the gcc, like gmp.h
+
+When building for linux run
+
+  make
+
+in the current directory.
+
+When building for windows-hosted compiler using mingw toolchain run
+
+  make HOST_GCC=x86_64-w64-mingw32 GCCPLUGINS_DIR=<full-path-to-win-avr-gcc-plugin-dir>
+
+in the current directory. Make sure the HOST_GCC matches gcc that was
+used to build the target compiler, otherwise plugin build will fail at
+linking step b/o missing symbols.
 
 Using.
 
-Invoke avr-g++ with additional parameter
+Invoke avr-g++ for compilation with additional parameter
 
   -fplugin=<full-path-to>/avr-flash-vtbl.so
 
